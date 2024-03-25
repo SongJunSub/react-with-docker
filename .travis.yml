@@ -31,9 +31,8 @@ deploy:
   #어떤 브랜치에 Push를 할 때 AWS에 배포를 할 것인지
   on:
     branch: main
-
-access_key_id: $AWS_ACCESS_KEY
-secret_access_key: $AWS_SECRET_ACCESS_KEY
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
 
 #테스트 성공 후 실행
 after_success:

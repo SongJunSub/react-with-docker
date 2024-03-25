@@ -1,0 +1,21 @@
+#관리자 권한 갖기
+sudo: required
+
+#언어(플랫폼)을 선택
+language: generic
+
+#도커 환경 구성
+services: docker
+
+#설치 전 스크립트를 실행할 수 있도록 함
+before_install:
+  - echo "Start creating an image with dockerfile"
+  - docker build -t songjunsub/react-with-docker -f Dockerfile.dev .
+
+#실행할 스크립트 (테스트)
+script:
+  - docker run -e CI=true songjunsub/react-with-docker npm run test -- --coverage
+
+#테스트 성공 후 실행
+after_success:
+  - echo "Test Success"

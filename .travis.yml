@@ -16,6 +16,25 @@ before_install:
 script:
   - docker run -e CI=true songjunsub/react-with-docker npm run test -- --coverage
 
+deploy:
+  #외부 서비스 표시 (s3, elasticbeanstalk, firebase 등)
+  provider: elasticbeanstalk
+  #현재 사용하고 있는 AWS의 서비스가 위치하고 있는 물리적 장소
+  region: "ap-northeast-2"
+  #생성된 어플리케이션의 이름
+  app: "react-with-docker"
+  env: "React-with-docker-env-1"
+  #해당 elasticbeanstalk을 위한 s3 버켓 이름
+  #Travis CI에서 가지고 있는 파일을 압축해서 S3에 보낸다.
+  bucket_name: "elasticbeanstalk-ap-northeast-2-339713086653"
+  bucket_path: "react-with-docker"
+  #어떤 브랜치에 Push를 할 때 AWS에 배포를 할 것인지
+  on:
+    branch: main
+
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_ACCESS_KEY
+
 #테스트 성공 후 실행
 after_success:
   - echo "Test Success"

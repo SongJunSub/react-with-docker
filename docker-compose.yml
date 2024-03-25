@@ -17,6 +17,9 @@ services:
     volumes:
       - /usr/src/app/node_modules
       - ./:/usr/src/app
+    #Windows 환경에서 실시간 반영 추가 설정
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     #리액트 앱을 끌 때 필요 (버그 수정)
     stdin_open: true
 
@@ -28,5 +31,8 @@ services:
     volumes:
       - /usr/src/app/node_modules
       - ./:/usr/src/app
+    #Windows 환경에서 실시간 반영 추가 설정
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     #테스트 컨테이너 시작할 때 실행되는 명령어
     command: ["npm", "run", "test"]

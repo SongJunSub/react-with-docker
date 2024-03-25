@@ -10,7 +10,7 @@ services: docker
 #설치 전 스크립트를 실행할 수 있도록 함
 before_install:
   - echo "Start creating an image with dockerfile"
-  - docker build -t songjunsub/react-with-docker -f Dockerfile.dev .
+  - docker build -t songjunsub/react-with-docker -f Dockerfile.dev ./
 
 #실행할 스크립트 (테스트)
 script:
